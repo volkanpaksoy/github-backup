@@ -1,0 +1,24 @@
+{
+    "token": "{GitHub Personal Access Token}",
+    "backupDirectory": "/home/gh-backup-data",
+    "notification": {
+        "subject": "GitHub Backup",
+        "messageBody": "Backup has been completed successfully",
+        "sns": {
+            "enabled": false,
+            "topicArn": "",
+            "accessKey": "",
+            "secretKey": "",
+            "region": ""
+        },
+        "email": {
+            "enabled": false,
+            "fromEmailAddress": "",
+            "toEmailAddress": "",
+            "smtpHost": "",
+            "smtpUsername": "",
+            "smtpPassword": "",
+            "smtpPort": 0
+        }
+    }
+}
