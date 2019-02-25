@@ -19,31 +19,53 @@ You can choose to receive notifications via Email or let the script publish the 
 If you choose to receive notifications create the IAM accounts with required permissions and populate the config.json with those values. Make sure you set the enabled flag to true
 
 ```
-    "sns": {
-        "enabled": false,
-        "topicArn": "",
-        "accessKey": "",
-        "secretKey": "",
-        "region": ""
-    },
-    "email": {
-        "enabled": false,
-        "fromEmailAddress": "",
-        "toEmailAddress": "",
-        "smtpHost": "",
-        "smtpUsername": "",
-        "smtpPassword": "",
-        "smtpPort": 0
-    }
+"sns": {
+    "enabled": false,
+    "topicArn": "",
+    "accessKey": "",
+    "secretKey": "",
+    "region": ""
+},
+"email": {
+    "enabled": false,
+    "fromEmailAddress": "",
+    "toEmailAddress": "",
+    "smtpHost": "",
+    "smtpUsername": "",
+    "smtpPassword": "",
+    "smtpPort": 0
+}
 ```
 
-
 ## Powershell
+Powershell script uses AWS for notifications so first you should install AWS Tools for Powershell
 
+```
+Install-Module -Name AWSPowerShell.NetCore
+```
+
+By default the script uses config.json in the same folder but another file can be supplied by using the -ConfigPath parameter. Also by supplying -DryRun parameter you can test your GitHub access without actually cloning or pulling the repositories.
+
+Basic usage:
+
+```
+.\backup-github.ps1 
+```
+
+Dry-run mode:
+
+```
+.\backup-github.ps1 -DryRun
+```
+
+Running with config in non-default path:
+
+```
+.\backup-github.ps1 -ConfigPath /Path/To/Config/ConfigName.json
+```
 
 ## Docker image
-
-Pull the image from Docker hub:
+There's also a Docker image that contains the script. To run from Docker pull the image from Docker hub:
 
 ```
 docker pull volkanx/github-backup
@@ -55,8 +77,9 @@ and start a container from the image:
 docker run --rm -d -v /host/path/to/data:/home/gh-backup-data -v /host/path/to/config:/home/gh-backup-config -v ~/.ssh:/root/.ssh:ro volkanx/github-backup -ConfigPath /home/gh-backup-config/config.json
 ```
 
-The command above runs the backup and deletes the container automatically.
+The command above runs the backup and deletes the container automatically. 
 
+The container doesn't have SSH keys so you have to mount a folder with your keys that have access to your GitHub account. 
 
 ## Build your own image
 
@@ -65,21 +88,6 @@ Open a terminal in the root of the repo
 ```
 docker build . -t {image name}
 ```
-
-
-
-
-## Running it on Windows
-
-Windows container
-
-
-## Running it on Raspberry Pi
-
-ARM image
-
-
-## Scheduling the runs
 
 
 
