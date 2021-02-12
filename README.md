@@ -68,13 +68,13 @@ Running with config in non-default path:
 There's also a Docker image that contains the script. To run from Docker pull the image from Docker hub:
 
 ```
-docker pull volkanx/github-backup
+docker pull volkanpaksoy/github-backup
 ```
 
 and start a container from the image:
 
 ```
-docker run --rm -d -v /host/path/to/data:/home/gh-backup-data -v /host/path/to/config:/home/gh-backup-config -v ~/.ssh:/root/.ssh:ro volkanx/github-backup -ConfigPath /home/gh-backup-config/config.json
+docker run --rm -d -v /host/path/to/data:/home/gh-backup-data -v /host/path/to/config:/home/gh-backup-config -v ~/.ssh:/root/.ssh:ro volkanpaksoy/github-backup -ConfigPath /home/gh-backup-config/config.json
 ```
 
 The command above runs the backup and deletes the container automatically. 
